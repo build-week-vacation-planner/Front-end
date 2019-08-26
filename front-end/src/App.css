@@ -1,0 +1,17 @@
+.app {
+    width: 500px;
+    height: 600px;
+    margin: 0 auto;
+
+}
+
+.signupForm {
+    width: 500px;
+    height: 600px;
+    margin: 0 auto;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
