@@ -1,6 +1,6 @@
 import React from "react";
 
-const TripForm = () => {
+const PlaceForm = () => {
   return (
     <div>
       <h3>Add a Place</h3>
@@ -14,4 +14,4 @@ const TripForm = () => {
   );
 };
 
-export default TripForm;
+export default PlaceForm;
