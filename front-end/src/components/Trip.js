@@ -1,15 +1,22 @@
 import React from "react";
-import TripForm from "./TripForm";
 import Chat from "./Chat";
+import TripInfo from "./TripInfo";
 
 const Trip = props => {
+  console.log(props);
   return (
-    <div>
-      <h1>Hawaii!</h1>
+    <div className="trip">
+      <h1>New York City!</h1>
+
       <Chat />
-      //mapping existing place informtion
-      <TripForm />
-      //add new place information
+      <TripInfo
+        tripData={props.tripData}
+        destination={props.tripData.destination}
+        startDate={props.tripData.startdate}
+        endDate={props.tripData.enddate}
+        places={props.tripData.places}
+      />
+      <button>Edit Trip</button>
     </div>
   );
 };
