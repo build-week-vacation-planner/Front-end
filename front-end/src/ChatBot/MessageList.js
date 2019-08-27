@@ -9,7 +9,7 @@ const data = [
 
     {
         senderId: "Thiery",
-        text: '... how about going home 😊.'
+        text: '...How about Alaska? 😃'
     },
 
     {
@@ -36,7 +36,7 @@ const MessageList = props => {
                 <Message key={item.id} item={item} toggleItem={props.toggleItem} />
             ))}
             <button className="clear-btn" onClick={props.clearCompleted}>
-             Clear Messages
+             Clear Message History
       </button>
         </div>
     );
