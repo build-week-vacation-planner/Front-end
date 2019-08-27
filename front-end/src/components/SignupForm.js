@@ -4,25 +4,26 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 
 const SignupForm = ({ values, errors, touched, handleSubmit, status }) => {
-  const [users, setUsers] = useState([]);
+  const [userList, setUserList] = useState([]);
 
   useEffect(() => {
-    console.log("infinite loop?");
-    setUsers([...users, status]);
+    if (status) {
+      setUserList([...userList, status]);
+    }
   }, [status]);
 
   return (
     <div>
       <h1>Sign Up Here</h1>
       <Form>
-        <Field type="text" name="email" placeholder="Email" />
+        <Field type="text" name="username" placeholder="Username" />
         <Field type="password" name="password" placeholder="Password" />
 
         <button type="submit">Submit</button>
 
         <div>
-          {touched.email && errors.email && (
-            <p className="error">{errors.email}</p>
+          {touched.username && errors.username && (
+            <p className="error">{errors.username}</p>
           )}
         </div>
         <div>
@@ -36,39 +37,36 @@ const SignupForm = ({ values, errors, touched, handleSubmit, status }) => {
 };
 
 const FormikSignupForm = withFormik({
-  mapPropsToValues({ username, email, password, termsOfService }) {
+  mapPropsToValues({ username, password }) {
     return {
-      email: email || "",
+      username: username || "",
       password: password || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email("Email not valid")
-      .required("Email is required"),
+    username: Yup.string().required("Username is required"),
     password: Yup.string()
       .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
 
-  handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
-    console.log("signing up");
-    if (values.email === "abc@gmail.com") {
-      setErrors({ email: "That email is already taken" });
+  handleSubmit(values, { resetForm, setStatus, setErrors }) {
+    // console.log("signing up");
+    if (values.username === "admin") {
+      setErrors({ username: "That username is already taken" });
     } else {
       axios
-        .post("XXXXXXXXXXXX", values)
+        .post(
+          "https://build-week-vacationplanner.herokuapp.com/createnewuser",
+          values
+        )
         .then(res => {
-          console.log(res);
+          console.log("res: ", res);
           resetForm();
-          setSubmitting(false);
           setStatus(res.data);
         })
-        .catch(err => {
-          console.log(err);
-          setSubmitting(false);
-        });
+        .catch(err => console.log(err.response));
     }
   }
 })(SignupForm);
