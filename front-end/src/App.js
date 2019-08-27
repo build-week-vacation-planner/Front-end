@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import TripList from "./components/TripList";
-
 import { Route } from "react-router-dom";
 import TripForm from "./components/TripForm";
 import Welcome from "./components/Welcome";

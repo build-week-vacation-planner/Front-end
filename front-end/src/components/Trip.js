@@ -3,6 +3,8 @@ import Chat from "./Chat";
 import TripInfo from "./TripInfo";
 import { Link } from "react-router-dom";
 
+//
+
 const Trip = props => {
   console.log(props);
   return (
