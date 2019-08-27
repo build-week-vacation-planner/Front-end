@@ -1,6 +1,7 @@
 import React from "react";
 import Chat from "./Chat";
 import TripInfo from "./TripInfo";
+import { Link } from "react-router-dom";
 
 const Trip = props => {
   console.log(props);
@@ -16,7 +17,9 @@ const Trip = props => {
         endDate={props.tripData.enddate}
         places={props.tripData.places}
       />
-      <button>Edit Trip</button>
+      <Link to="/trip-form">
+        <button>Edit Trip</button>
+      </Link>
     </div>
   );
 };
