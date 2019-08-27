@@ -7,36 +7,58 @@ import MessageList from './MessageFolder/MessageList';
 import MessageForm from './MessageFolder/MessageForm';
 import RoomList from './RoomFolder/RoomList';
 import RoomForm from './RoomFolder/RoomForm';
-import Chatkit from '@pusher/chatkit-client';
+import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 
-import { tokenUrl, instanceLocator } from './config'
+import { tokenUrl, instanceLocator, roomId } from './config'
+
+
+const DUMMY_DATA = [
+    //Similar data from Chatkit??
+    {
+        senderId: 'DStrange',
+        text: 'Hey, How about Tokyo?',
+    },
+
+    {
+        senderId: 'AOne',
+        text: 'Works for me!',
+    },
+
+    {
+        senderId: 'DStrange',
+        text: 'Great!',
+    },
+]
 
 class App extends React.Component {
 
     constructor() {
         super()
         this.state = {
-            messages: []
+            messages: DUMMY_DATA
         }
+        //this.sendMessage = this.sendMessage.bind(this)
     }
 
     componentDidMount() {
-        const chatManager = new Chatkit.ChatManager({
-            instanceLocator,
+        const chatManager = new ChatManager({
+            instanceLocator: instanceLocator,
             userId: 'DStrange',
-            tokenProvider: new Chatkit.TokenProvider({
+            tokenProvider: new TokenProvider({
                 url: tokenUrl
             })
         })
 
         chatManager.connect()
             .then(currentUser => {
-                currentUser.subscribeToRoom({
-                    roomId: "fe9596b3-abfb-4512-be33-5dae130e3938",
-                    messageLimit: 25,
+                console.log('Successful Connection', currentUser)
+                this.currentUser = currentUser
+                this.currentUser.subscribeToRoomMultipart({
+                    roomId: roomId,
+                    //messageLimit: 25,
                     hooks: {
-                        onNewMessage: message => {
-                             console.log('message.text', message.text)
+                        onMessage: message => {
+                             console.log('recieved message', message)
                             this.setState({
                                 messages: [...this.state.messages, message]
                             })
@@ -44,14 +66,28 @@ class App extends React.Component {
                     }
                 })
             })
+
+            .catch(error => {
+                console.log('Error with Connection', error)
+            })
     }
+
+    // sendMessage(message){
+    //     this.currentUser.sendMultipartMessage({
+    //         message,
+    //         roomId:"fe9596b3-abfb-4512-be33-5dae130e3938",
+    //     })
+    // }
+
+
+
     render() {
-         console.log('this.state.messages', this.state.messages)
+         //console.log('Messages', this.state.messages)
         return (
             <div className = "chatapp-app">
                 <RoomList/>
-                <MessageList messages = {this.state.messages}/>
-                <MessageForm/>
+                <MessageList messages = {this.state.messages} />
+                <MessageForm  />
                 <RoomForm/>
             </div>
         )
