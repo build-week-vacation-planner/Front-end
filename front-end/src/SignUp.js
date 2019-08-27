@@ -21,27 +21,27 @@ const SignUp = ({errors, touched, values, status}) => {
           <Form>
               <div className="signupForm">
               <label htmlFor="firstname">First Name</label>
-              <input name="firstname" type="text" placeholder="first name" />
+              <Field name="firstname" type="text" placeholder="first name" />
               {touched.firstname && errors.firstname && (
                   <p className="error">{errors.firstname}</p>
               )}
               <label htmlFor="firstname">Last Name</label>
-              <input name="lastname" type="text" placeholder="last name" />
+              <Field name="lastname" type="text" placeholder="last name" />
               {touched.lastname && errors.lastname && (
                   <p className="error">{errors.lastname}</p>
               )}
               <label htmlFor="email">email</label>
-              <input name="email" type="email" placeholder="email" />
+              <Field name="email" type="email" placeholder="email" />
               {touched.email && errors.email && (
                   <p className="error">{errors.email}</p>
               )}
               <label htmlFor="password">password</label>
-              <input name="password" type="password" placeholder="password" />
+              <Field name="password" type="password" placeholder="password" />
               {touched.password && errors.password && (
                   <p className="error">{errors.password}</p>
               )}
               <label htmlFor="confirmPassword">Confirm password</label>
-              <input name="confirmPassword" type="password" placeholder="Confirm Password" />
+              <Field name="confirmPassword" type="password" placeholder="Confirm Password" />
               {touched.confirmpassword && errors.confirmpassword && (
                   <p className="error">{errors.confirmpassword}</p>
               )}
