@@ -56,6 +56,7 @@ const FormikLoginForm = withFormik({
   }),
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
+    console.log('submitting')
     if (values.email === "abc@gmail.com") {
       setErrors({ email: "That email is already taken" });
     } else {
