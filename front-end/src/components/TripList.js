@@ -1,6 +1,7 @@
 import React from "react";
 import Trip from "./Trip";
-import TripForm from "./TripForm";
+import { Link } from "react-router-dom";
+import Header from "./Header";
 
 //add data regarding existing Trips
 const tripData = {
@@ -13,10 +14,13 @@ const tripData = {
 const TripList = () => {
   return (
     <div>
-      <button>Create a New Trip</button>
-      <TripForm />
+      <Header />
       <h2>Existing Trips:</h2>
       <Trip tripData={tripData} />
+      <br />
+      <Link to="/trip-form">
+        <button>Create a New Trip</button>
+      </Link>
     </div>
   );
 };
