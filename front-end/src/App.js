@@ -1,12 +1,16 @@
 import React from "react";
 import "./App.css";
 
-import ChatIndex from './ChatApp/ChatIndex';
+// import ChatIndex from './ChatApp/ChatIndex';
+import ChatBotApp from './ChatBot/ChatBotApp';
+
 
 function App() {
   return (
   <div className="App">
-    <ChatIndex/>
+    {/* <ChatIndex/> */}
+    <ChatBotApp/>
+    
   </div>
   )
 }
