@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 class MessageForm extends React.Component{
@@ -6,7 +7,7 @@ class MessageForm extends React.Component{
         this.state = {
 
             message: '',
-            
+
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleChange.bind(this)
@@ -19,27 +20,32 @@ class MessageForm extends React.Component{
 
     }
 
-    handleSubmit(e){
-        e.preventDefault()
-        //console.log('Handle Submit', this.state.message)
+    handleSubmit(ef){
+        ef.preventDefault()
+        console.log('Handle Submit', ef)
         this.props.sendSimpleMessage(this.state.message)
+        this.setState({
+            message: '',
+        })
+        
         
     }
 
 
 
     render() {
+        //console.log('this is message', this.state.message)
         return (
             <form
-              //onSubmit = {this.handleSubmit}
+              onSubmit = {this.handleSubmit}
              className = 'message-form'>
                 <input 
                     value = {this.state.message}
                     onChange = {this.handleChange}
                     placeholder = 'Enter Message Here'
                     type = 'text'
-                    id = 'message-text'/>
-                <button type = 'submit' onSubmit ={this.handleSubmit}>Submit</button>
+                    />
+                <button type = 'submit'>Submit</button>
             </form>
 
         )

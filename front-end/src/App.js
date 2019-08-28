@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
  import ChatIndex from './ChatApp/ChatIndex';
-// import ChatBotApp from './ChatBot/ChatBotApp';
+// import ChatBotApp from './ChatBackup/ChatBotApp';
 
 
 function App() {
