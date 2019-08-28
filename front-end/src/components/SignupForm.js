@@ -58,10 +58,14 @@ const FormikSignupForm = withFormik({
       setErrors({ email: "That email is already taken" });
     } else {
       axios
-        .post("XXXXXXXXXXXX", values)
+        .post(
+          "https://build-week-vacationplanner.herokuapp.com/createnewuser",
+          values
+        )
         .then(res => {
           console.log(res);
           resetForm();
+          localStorage.setItem("token", res.data.access_token);
           setSubmitting(false);
           setStatus(res.data);
         })

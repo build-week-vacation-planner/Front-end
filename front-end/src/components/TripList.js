@@ -8,24 +8,25 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 //add data regarding existing Trips
 const initialTrip = [
   {
-    id: "",
-    destination: "",
-    startDate: "",
-    endDate: "",
-    places: []
+    vacationid: "",
+    vacationlocation: "",
+    startdate: "",
+    enddate: "",
+    thingstodo: []
   }
 ];
 
-const TripList = () => {
+const TripList = props => {
+  console.log("tripList props", props);
   const [trip, setTrip] = useState([]);
   const [tripToEdit, setTripToEdit] = useState(initialTrip);
   const [editing, setEditing] = useState(false);
   const [newTrip, setNewTrip] = useState({
-    id: "",
-    destination: "",
-    startDate: "",
-    endDate: "",
-    places: []
+    vacationid: "",
+    vacationlocation: "",
+    startdate: "",
+    enddate: "",
+    thingstodo: []
   });
 
   const editTrip = () => {
@@ -59,7 +60,7 @@ const TripList = () => {
     event.preventDefault();
     axiosWithAuth()
       .post(
-        `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation `,
+        `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation`,
         newTrip,
         {
           headers: {
@@ -93,10 +94,10 @@ const TripList = () => {
       .catch(err => console.log(err.response));
   };
 
-  const getTrip = userid => {
+  const getTrip = props => {
     axiosWithAuth()
       .get(
-        `https://build-week-vacationplanner.herokuapp.com/users/{userid}/vacations`,
+        `https://build-week-vacationplanner.herokuapp.com/users/4/vacations`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
