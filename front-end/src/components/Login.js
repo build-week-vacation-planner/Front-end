@@ -50,7 +50,14 @@ const FormikLoginForm = withFormik({
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
     axios
-      .post("https://build-week-vacationplanner.herokuapp.com/login", values)
+      .post("https://build-week-vacationplanner.herokuapp.com/login", `grant_type=password&username=${this.state.username}&password=${this.state.password}`, {
+    
+        headers: {
+            
+            Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    }))
       .then(res => {
         console.log(res);
         resetForm();
