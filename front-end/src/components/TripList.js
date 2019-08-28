@@ -37,7 +37,12 @@ const TripList = () => {
     axiosWithAuth()
       .put(
         `https://build-week-vacationplanner.herokuapp.com/vacation/{vacationid}`,
-        tripToEdit
+        tripToEdit,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       )
       .then(res => {
         console.log("axios data", res);
@@ -55,7 +60,12 @@ const TripList = () => {
     axiosWithAuth()
       .post(
         `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation `,
-        newTrip
+        newTrip,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       )
       .then(res => {
         console.log("axios post data", res);
@@ -68,7 +78,12 @@ const TripList = () => {
   const deleteTrip = trip => {
     axiosWithAuth()
       .delete(
-        `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`
+        `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       )
       .then(res => {
         console.log(res.data);
@@ -78,9 +93,16 @@ const TripList = () => {
       .catch(err => console.log(err.response));
   };
 
-  const getTrip = () => {
+  const getTrip = userid => {
     axiosWithAuth()
-      .get(`https://build-week-vacationplanner.herokuapp.com/users/{userid}`)
+      .get(
+        `https://build-week-vacationplanner.herokuapp.com/users/{userid}/vacations`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      )
       .then(res => {
         console.log(res.data);
         setTrip(res.data);
