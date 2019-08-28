@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { Route } from "react-router-dom";
 
 //add data regarding existing Trips
 const initialTrip = [
@@ -132,13 +133,13 @@ const TripList = props => {
               <p>
                 {trip.vacation.startdate} to {trip.vacation.enddate}
               </p>
+              <Trip {...props} trip={trip} deleteTrip={deleteTrip} />
               <span>"Arrow Icon"</span>
             </div>
           </Link>
         );
       })}
-      <Trip trip={trip} />
-      <br />
+
       <Link to="/trip-form">
         <button>Create a New Trip</button>
       </Link>
