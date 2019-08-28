@@ -7,7 +7,7 @@ import Welcome from "./components/Welcome";
 import TripInfo from "./components/TripInfo";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
-import SignupForm from "./components/SignupForm";
+import FormikSignupForm from "./components/SignupForm";
 import PrivateRoute from "./components/PrivateRoute";
 import Menu from "./components/Menu";
 
@@ -16,12 +16,12 @@ function App() {
     <div className="App">
       <Route exact path="/" render={props => <Welcome {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/signup" render={props => <SignupForm {...props} />} />
-      <Route path="/trip-list" render={props => <TripList {...props} />} />
-      <Route path="/trip-form" render={props => <TripForm {...props} />} />
-      <Route path="/trip-info" render={props => <TripInfo {...props} />} />
-      <Route path="/trip-messages" render={props => <Chat {...props} />} />
-      <Route exact path="/menu" render={props => <Menu {...props} />} />
+      <Route path="/signup" render={props => <FormikSignupForm {...props} />} />
+      <PrivateRoute exact path="/trip-list" component={TripList} />
+      <PrivateRoute exact path="/trip-form" component={TripForm} />
+      <PrivateRoute exact path="/trip-info" component={TripInfo} />
+      <PrivateRoute exact path="/trip-messages" component={Chat} />
+      <PrivateRoute path="/menu" component={Menu} />
     </div>
   );
 }

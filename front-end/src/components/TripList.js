@@ -92,6 +92,11 @@ const TripList = () => {
     getTrip();
   }, []);
 
+  const fetchVacations = id => {
+    axios
+      .get(`https://build-week-vacationplanner.herokuapp.com/vacation/${id}`)
+      .then(res => {});
+  };
   return (
     <div>
       <Header />
