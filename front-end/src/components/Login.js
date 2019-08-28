@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -34,35 +34,41 @@ const Login = ({ errors, touched, handleSubmit, status }) => {
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ username, password, history }) {
     return {
       username: username || "",
-      password: password || ""
+      password: password || "",
+      history: history || ""
     };
   },
 
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Username is required"),
     password: Yup.string()
-      .min(6, "Password must be 6 characters or longer")
+      .min(5, "Password must be 5 characters or longer")
       .required("Password is required")
   }),
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
+    console.log(values);
     axios
-      .post("https://build-week-vacationplanner.herokuapp.com/login", `grant_type=password&username=${this.state.username}&password=${this.state.password}`, {
-    
-        headers: {
-            
-            Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
+      .post(
+        "https://build-week-vacationplanner.herokuapp.com/login",
+        `grant_type=password&username=${values.username}&password=${values.password}`,
+        {
+          headers: {
+            Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
         }
-    }))
+      )
       .then(res => {
         console.log(res);
         resetForm();
         setSubmitting(false);
         setStatus(res.data);
+        localStorage.setItem("token", res.data.access_token);
+        values.history.push("/trip-list");
       })
       .catch(err => {
         console.log(err);

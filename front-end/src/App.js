@@ -17,27 +17,11 @@ function App() {
       <Route exact path="/" render={props => <Welcome {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/signup" render={props => <FormikSignupForm {...props} />} />
-      <Route
-        exact
-        path="/trip-list"
-        render={props => <TripList {...props} />}
-      />
-      <Route
-        exact
-        path="/trip-form"
-        render={props => <TripForm {...props} />}
-      />
-      <Route
-        exact
-        path="/trip-info"
-        render={props => <TripInfo {...props} />}
-      />
-      <Route
-        exact
-        path="/trip-messages"
-        render={props => <Chat {...props} />}
-      />
-      <Route path="/menu" render={props => <Menu {...props} />} />
+      <PrivateRoute exact path="/trip-list" component={TripList} />
+      <PrivateRoute exact path="/trip-form" component={TripForm} />
+      <PrivateRoute exact path="/trip-info" component={TripInfo} />
+      <PrivateRoute exact path="/trip-messages" component={Chat} />
+      <PrivateRoute path="/menu" component={Menu} />
     </div>
   );
 }
