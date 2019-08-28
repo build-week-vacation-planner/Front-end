@@ -2,8 +2,8 @@
 import React from 'react';
 
 class MessageForm extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
 
             message: '',
@@ -23,7 +23,7 @@ class MessageForm extends React.Component{
     handleSubmit(ef){
         ef.preventDefault()
         console.log('Handle Submit', ef)
-        this.props.sendSimpleMessage(this.state.message)
+        this.props.onSubmit(this.state.message)
         this.setState({
             message: '',
         })

@@ -25,33 +25,32 @@ class MessageList extends React.Component {
         console.log('message-text', this.props.messagetext)
         return (
             <div className='message-list'>
-                
+
                 {data.map((message, index) => {
                     return (
-                        <Message key={message.content} username = {message.senderId} text = {message.text}/>
-                       
+                        <Message key={message.content} username={message.senderId} text={message.text} />
+
                     )
                 })}
-
-                {/* {this.props.messages.map((message, index) => {
+                {this.props.messages.map((message, index) => {
                     return (
-                        <Message key = {message.id} username = {
-                            message.senderId} text = {message.text}/>
+                        <Message key={message.id} username={
+                            message.senderId} text={message.text} />
                     )
                 })}
-
-                {this.props.messagetext.map((message, index)=> {
+{/* 
+                {this.props.messagetext.map((message, index) => {
                     return (
-                        <Message key = {message.hello} text = {message}/>
+                        <Message key={message.hello} text={message} />
                     )
                 })} */}
 
-                {this.props.messages.map((message, index) => {
+                {/* {this.props.messages.map((message, index) => {
                     const linkedContent = this.props.messagetext[index]
                     return (
-                        <Message key = {message.hi} username = {message.senderId} text = {linkedContent}/>
+                        <Message key={message.hi} username={message.senderId} text={linkedContent} />
                     )
-                })}
+                })} */}
 
             </div>
 
