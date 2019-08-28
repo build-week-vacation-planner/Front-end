@@ -37,10 +37,11 @@ const SignupForm = ({ values, errors, touched, handleSubmit, status }) => {
 };
 
 const FormikSignupForm = withFormik({
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ username, password, history }) {
     return {
       username: username || "",
-      password: password || ""
+      password: password || "",
+      history: history || ""
     };
   },
 
@@ -64,6 +65,7 @@ const FormikSignupForm = withFormik({
         .then(res => {
           console.log(res);
           localStorage.setItem("token", res.data.access_token);
+          values.history.push("/trip-list");
         })
         .catch(err => console.log(err.response));
     }
