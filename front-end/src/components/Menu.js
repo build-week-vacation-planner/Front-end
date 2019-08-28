@@ -8,7 +8,9 @@ const Menu = () => {
       <Link to="/trip-list">
         <button>Home</button>
       </Link>
+      <Link to="/login">
       <button>Account</button>
+      </Link>
       <button>Settings</button>
       <Link to="/">
         <button>Log Out</button>
