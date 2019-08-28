@@ -95,10 +95,10 @@ const TripList = props => {
       .catch(err => console.log(err.response));
   };
 
-  const getTrip = props => {
+  const getTrip = () => {
     axiosWithAuth()
       .get(
-        `https://build-week-vacationplanner.herokuapp.com/user/getcurrentuser`,
+        `https://build-week-vacationplanner.herokuapp.com/users/getcurrentuser`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -108,6 +108,7 @@ const TripList = props => {
       .then(res => {
         console.log(res.data);
         setUser(res.data);
+        setTrip(res.data.vacationParticipants);
       })
       .catch(err => console.log(err.response));
   };
@@ -122,11 +123,14 @@ const TripList = props => {
       <h2>Existing Trips:</h2>
       {trip.map(trip => {
         return (
-          <Link to={`/trip/${trip.vacationid}`} key={trip.vacationid}>
+          <Link
+            to={`/trip/${trip.vacation.vacationid}`}
+            key={trip.vacation.vacationid}
+          >
             <div className="trip-preview">
-              <h2>{trip.vacationlocation}</h2>
+              <h2>{trip.vacation.vacationlocation}</h2>
               <p>
-                {trip.startdate} to {trip.enddate}
+                {trip.vacation.startdate} to {trip.vacation.enddate}
               </p>
               <span>"Arrow Icon"</span>
             </div>
