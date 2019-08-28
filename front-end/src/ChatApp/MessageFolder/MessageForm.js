@@ -5,14 +5,14 @@ class MessageForm extends React.Component{
         super()
         this.state = {
 
-            message: ''
+            message: '',
+            
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleChange.bind(this)
     }
 
     handleChange(e) {
-        // console.log(e.target.value)
         this.setState({
             message: e.target.value
         })
@@ -21,25 +21,25 @@ class MessageForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        console.log('Handle Submit', this.state.message)
-        this.props.sendMessage(this.state.message)
+        //console.log('Handle Submit', this.state.message)
+        this.props.sendSimpleMessage(this.state.message)
         
     }
 
 
 
     render() {
-        // console.log('this.state.message', this.state.message)
-
         return (
             <form
-             onSubmit = {this.handleSubmit}
+              //onSubmit = {this.handleSubmit}
              className = 'message-form'>
                 <input 
                     value = {this.state.message}
                     onChange = {this.handleChange}
                     placeholder = 'Enter Message Here'
-                    type = 'text'/>
+                    type = 'text'
+                    id = 'message-text'/>
+                <button type = 'submit' onSubmit ={this.handleSubmit}>Submit</button>
             </form>
 
         )

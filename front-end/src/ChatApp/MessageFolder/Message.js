@@ -1,13 +1,13 @@
 import React from 'react';
 
 function Message(props) {
-    
+
     return (
-        <p>message</p>
-        // <div className='message'>
-        //     <div className='message-username'>{props.username}</div>
-        //     <div className='message-text'>{props.text}</div>
-        // </div>
+        <>
+            <div>{props.username}</div>
+            <div>{props.text}</div>
+            <br />
+        </>
 
     )
 
