@@ -9,19 +9,20 @@ const Trip = props => {
   console.log(props);
   return (
     <div className="trip">
-      <h1>{props.trip.destination}</h1>
+      <h1>{props.trip.vacation.vacationlocation}</h1>
 
       <Chat />
       <TripInfo
         tripData={props.trip}
-        destination={props.trip.destination}
-        startDate={props.trip.startdate}
-        endDate={props.trip.enddate}
-        places={props.trip.places}
+        destination={props.trip.vacation.vacationlocation}
+        startDate={props.trip.vacation.startdate}
+        endDate={props.trip.vacation.enddate}
+        places={props.trip.vacation.thingstodo}
       />
       <Link to="/trip-form">
-        <button>Edit Trip</button>
+        <button className="edit-btn">Edit Trip</button>
       </Link>
+      <button>Delete Trip</button>
     </div>
   );
 };

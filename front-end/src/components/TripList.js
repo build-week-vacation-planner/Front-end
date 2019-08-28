@@ -4,28 +4,31 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { Route } from "react-router-dom";
 
 //add data regarding existing Trips
 const initialTrip = [
   {
-    id: "",
-    destination: "",
-    startDate: "",
-    endDate: "",
-    places: []
+    vacationid: "",
+    vacationlocation: "",
+    startdate: "",
+    enddate: "",
+    thingstodo: []
   }
 ];
 
-const TripList = () => {
+const TripList = props => {
+  console.log("tripList props", props);
+  const [user, setUser] = useState({});
   const [trip, setTrip] = useState([]);
   const [tripToEdit, setTripToEdit] = useState(initialTrip);
   const [editing, setEditing] = useState(false);
   const [newTrip, setNewTrip] = useState({
-    id: "",
-    destination: "",
-    startDate: "",
-    endDate: "",
-    places: []
+    vacationid: "",
+    vacationlocation: "",
+    startdate: "",
+    enddate: "",
+    thingstodo: []
   });
 
   const editTrip = () => {
@@ -37,7 +40,12 @@ const TripList = () => {
     axiosWithAuth()
       .put(
         `https://build-week-vacationplanner.herokuapp.com/vacation/{vacationid}`,
-        tripToEdit
+        tripToEdit,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       )
       .then(res => {
         console.log("axios data", res);
@@ -54,8 +62,13 @@ const TripList = () => {
     event.preventDefault();
     axiosWithAuth()
       .post(
-        `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation `,
-        newTrip
+        `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation`,
+        newTrip,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       )
       .then(res => {
         console.log("axios post data", res);
@@ -68,7 +81,12 @@ const TripList = () => {
   const deleteTrip = trip => {
     axiosWithAuth()
       .delete(
-        `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`
+        `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       )
       .then(res => {
         console.log(res.data);
@@ -80,10 +98,18 @@ const TripList = () => {
 
   const getTrip = () => {
     axiosWithAuth()
-      .get(`https://build-week-vacationplanner.herokuapp.com/users/{userid}`)
+      .get(
+        `https://build-week-vacationplanner.herokuapp.com/users/getcurrentuser`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      )
       .then(res => {
         console.log(res.data);
-        setTrip(res.data);
+        setUser(res.data);
+        setTrip(res.data.vacationParticipants);
       })
       .catch(err => console.log(err.response));
   };
@@ -92,30 +118,28 @@ const TripList = () => {
     getTrip();
   }, []);
 
-  const fetchVacations = id => {
-    axios
-      .get(`https://build-week-vacationplanner.herokuapp.com/vacation/${id}`)
-      .then(res => {});
-  };
   return (
     <div>
       <Header />
       <h2>Existing Trips:</h2>
       {trip.map(trip => {
         return (
-          <Link to={`/trip/${trip.vacationid}`} key={trip.vacationid}>
+          <Link
+            to={`/trip/${trip.vacation.vacationid}`}
+            key={trip.vacation.vacationid}
+          >
             <div className="trip-preview">
-              <h2>{trip.vacationlocation}</h2>
+              <h2>{trip.vacation.vacationlocation}</h2>
               <p>
-                {trip.startdate} to {trip.enddate}
+                {trip.vacation.startdate} to {trip.vacation.enddate}
               </p>
+              <Trip {...props} trip={trip} deleteTrip={deleteTrip} />
               <span>"Arrow Icon"</span>
             </div>
           </Link>
         );
       })}
-      <Trip trip={trip} />
-      <br />
+
       <Link to="/trip-form">
         <button>Create a New Trip</button>
       </Link>
