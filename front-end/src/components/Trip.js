@@ -9,15 +9,15 @@ const Trip = props => {
   console.log(props);
   return (
     <div className="trip">
-      <h1>New York City!</h1>
+      <h1>{props.trip.destination}</h1>
 
       <Chat />
       <TripInfo
-        tripData={props.tripData}
-        destination={props.tripData.destination}
-        startDate={props.tripData.startdate}
-        endDate={props.tripData.enddate}
-        places={props.tripData.places}
+        tripData={props.trip}
+        destination={props.trip.destination}
+        startDate={props.trip.startdate}
+        endDate={props.trip.enddate}
+        places={props.trip.places}
       />
       <Link to="/trip-form">
         <button>Edit Trip</button>
