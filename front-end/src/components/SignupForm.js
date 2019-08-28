@@ -63,10 +63,7 @@ const FormikSignupForm = withFormik({
         )
         .then(res => {
           console.log(res);
-          resetForm();
           localStorage.setItem("token", res.data.access_token);
-          setSubmitting(false);
-          setStatus(res.data);
         })
         .catch(err => console.log(err.response));
     }

@@ -10,36 +10,15 @@ import Login from "./components/Login";
 import SignupForm from "./components/SignupForm";
 import PrivateRoute from "./components/PrivateRoute";
 import Menu from "./components/Menu";
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 function App() {
-  const [user, setUser] = useState({});
-
-  const getUsers = () => {
-    axiosWithAuth()
-      .get(
-        `https://build-week-vacationplanner.herokuapp.com/users/${props.user.userid}/vacations`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
-        }
-      )
-      .then(res => {
-        console.log(res.data);
-        setTrip(res.data);
-      })
-      .catch(err => console.log(err.response));
-  };
-
   return (
     <div className="App">
       <Route exact path="/" render={props => <Welcome {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/signup" render={props => <SignupForm {...props} />} />
-      <Route
-        path="/trip-list"
-        render={props => <TripList {...props} user={user} setUser={setUser} />}
-      />
+      <Route path="/trip-list" render={props => <TripList {...props} />} />
       <Route path="/trip-form" render={props => <TripForm {...props} />} />
       <Route path="/trip-info" render={props => <TripInfo {...props} />} />
       <Route path="/trip-messages" render={props => <Chat {...props} />} />

@@ -18,6 +18,7 @@ const initialTrip = [
 
 const TripList = props => {
   console.log("tripList props", props);
+  const [user, setUser] = useState({});
   const [trip, setTrip] = useState([]);
   const [tripToEdit, setTripToEdit] = useState(initialTrip);
   const [editing, setEditing] = useState(false);
@@ -97,7 +98,7 @@ const TripList = props => {
   const getTrip = props => {
     axiosWithAuth()
       .get(
-        `https://build-week-vacationplanner.herokuapp.com/users/${props.user.userid}/vacations`,
+        `https://build-week-vacationplanner.herokuapp.com/user/getcurrentuser`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -106,7 +107,7 @@ const TripList = props => {
       )
       .then(res => {
         console.log(res.data);
-        setTrip(res.data);
+        setUser(res.data);
       })
       .catch(err => console.log(err.response));
   };
