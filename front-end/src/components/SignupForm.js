@@ -63,7 +63,7 @@ const FormikSignupForm = withFormik({
           values
         )
         .then(res => {
-          console.log("res: ", res);
+          console.log(res);
           localStorage.setItem("token", res.data.access_token);
           values.history.push("/trip-list");
         })
