@@ -97,7 +97,7 @@ const TripList = props => {
   const getTrip = props => {
     axiosWithAuth()
       .get(
-        `https://build-week-vacationplanner.herokuapp.com/users/4/vacations`,
+        `https://build-week-vacationplanner.herokuapp.com/users/${props.user.userid}/vacations`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`

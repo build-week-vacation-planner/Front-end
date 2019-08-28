@@ -14,6 +14,23 @@ import Menu from "./components/Menu";
 function App() {
   const [user, setUser] = useState({});
 
+  const getUsers = () => {
+    axiosWithAuth()
+      .get(
+        `https://build-week-vacationplanner.herokuapp.com/users/${props.user.userid}/vacations`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+        setTrip(res.data);
+      })
+      .catch(err => console.log(err.response));
+  };
+
   return (
     <div className="App">
       <Route exact path="/" render={props => <Welcome {...props} />} />
