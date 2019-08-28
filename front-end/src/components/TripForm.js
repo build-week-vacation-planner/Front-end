@@ -1,6 +1,6 @@
 import React from "react";
 
-const TripForm = () => {
+const TripForm = props => {
   return (
     <div>
       <h3>New Trip</h3>

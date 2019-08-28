@@ -3,6 +3,7 @@ import Trip from "./Trip";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 //add data regarding existing Trips
 const initialTrip = [
@@ -16,9 +17,16 @@ const initialTrip = [
 ];
 
 const TripList = () => {
-  const [tripToEdit, setTripToEdit] = useState(initialTrip);
   const [trip, setTrip] = useState([]);
+  const [tripToEdit, setTripToEdit] = useState(initialTrip);
   const [editing, setEditing] = useState(false);
+  const [newTrip, setNewTrip] = useState({
+    id: "",
+    destination: "",
+    startDate: "",
+    endDate: "",
+    places: []
+  });
 
   const editTrip = () => {
     setEditing(true);
@@ -26,7 +34,7 @@ const TripList = () => {
 
   const saveEdit = (e, trip) => {
     e.preventDefault();
-    axios
+    axiosWithAuth()
       .put(
         `https://build-week-vacationplanner.herokuapp.com/vacation/{vacationid}`,
         tripToEdit
@@ -42,6 +50,21 @@ const TripList = () => {
       .catch(err => console.log(err.response));
   };
 
+  const addTrip = event => {
+    event.preventDefault();
+    axiosWithAuth()
+      .post(
+        `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation `,
+        newTrip
+      )
+      .then(res => {
+        console.log("axios post data", res);
+        setNewTrip(res.data);
+      })
+      .catch(err => console.log(err.response));
+  };
+  // need to render props to pass addTrip down to TripForm
+
   const deleteTrip = trip => {
     axiosWithAuth()
       .delete(
@@ -55,11 +78,9 @@ const TripList = () => {
       .catch(err => console.log(err.response));
   };
 
-  const getTrip = id => {
-    axios
-      .get(
-        `https://build-week-vacationplanner.herokuapp.com/vacation/{vacationid}`
-      )
+  const getTrip = () => {
+    axiosWithAuth()
+      .get(`https://build-week-vacationplanner.herokuapp.com/users/{userid}`)
       .then(res => {
         console.log(res.data);
         setTrip(res.data);
