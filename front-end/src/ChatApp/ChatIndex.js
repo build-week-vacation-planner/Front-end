@@ -42,7 +42,7 @@ class App extends React.Component {
                         console.log('received message:', message)
                         this.setState({
                             messages: [...this.state.messages, message],
-                            texts: [...this.state.texts, message.parts[0].payload.conent]
+                            texts: [...this.state.texts, message.parts[0].payload.content]
                         })
                     }
                 }

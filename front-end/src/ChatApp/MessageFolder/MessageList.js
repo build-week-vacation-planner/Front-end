@@ -40,11 +40,11 @@ class MessageList extends React.Component {
                     )
                 })}
 
-                {/* {this.props.messagetext.map((message, index)=> {
+                {this.props.messagetext.map((message, index)=> {
                     return (
-                        <Message key = {message} text = {message.content}/>
+                        <Message key = {message.hello} text = {message}/>
                     )
-                })} */}
+                })}
 
             </div>
 

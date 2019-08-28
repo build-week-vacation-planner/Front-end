@@ -5,7 +5,7 @@ function Message(props) {
     return (
         <>
             <div>{props.username}</div>
-            <div>{props.text}</div>
+            <div className = 'text'>{props.text}</div>
             <br />
         </>
 
