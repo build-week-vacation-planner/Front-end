@@ -17,7 +17,7 @@ class App extends React.Component {
                 texts: [],
             }
 
-        this.sendSimpleMessage = this.sendSimpleMessage.bind(this)
+        //this.sendSimpleMessage = this.sendSimpleMessage.bind(this)
     }
 
 
@@ -53,33 +53,38 @@ class App extends React.Component {
                 //     roomId: currentUser.rooms[0].id
                 // })
 
-            })
+                currentUser.sendSimpleMessage({
+                    text: 'Hello',
+                    roomId: this.currentUser.rooms[0].id,
 
-            .catch(error => {
-                console.log('Error with Connection', error)
-            });
+                })
 
-    }
+                    .catch(error => {
+                        console.log('Error with Connection', error)
+                    });
+
+            }
 
 
+            )}
 
-    sendSimpleMessage(text) {
-        console.log('this text', text)
-        this.currentUser.sendSimpleMessage({
-            text,
-            roomId: this.currentUser.rooms[0].id,
-        })
-    }
+    // sendSimpleMessage(text) {
+    //     console.log('this text', text)
+    //     this.currentUser.sendSimpleMessage({
+    //         text,
+    //         roomId: this.currentUser.rooms[0].id,
+    //     })
+    // }
 
 
     render() {
-        console.log('Messages', this.state.messages)
-        return (
-            <div className="chatapp-app">
-                {/* <RoomList/> */}
-                <MessageList messages={this.state.messages} messagetext={this.state.texts} />
-                <MessageForm sendSimpleMessage={this.sendSimpleMessage} />
-                {/* <RoomForm/> */}
+                    console.log('Messages', this.state.messages)
+        return(
+            <div className = "chatapp-app" >
+                            {/* <RoomList/> */ }
+                            < MessageList messages = { this.state.messages } messagetext = { this.state.texts } />
+                                <MessageForm sendSimpleMessage={this.sendSimpleMessage} />
+                {/* <RoomForm/> */ }
             </div>
         )
     }

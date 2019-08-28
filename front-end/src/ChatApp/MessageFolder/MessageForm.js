@@ -44,6 +44,7 @@ class MessageForm extends React.Component{
                     onChange = {this.handleChange}
                     placeholder = 'Enter Message Here'
                     type = 'text'
+                    id = {this.input}
                     />
                 <button type = 'submit'>Submit</button>
             </form>
