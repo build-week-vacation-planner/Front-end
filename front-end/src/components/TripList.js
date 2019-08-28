@@ -5,38 +5,57 @@ import Header from "./Header";
 import axios from "axios";
 
 //add data regarding existing Trips
-// const tripData = [
-//   {
-//     id: 1,
-//     destination: "NYC",
-//     startDate: "May 2",
-//     endDate: "May 14",
-//     places: ["Statue of Liberty", "Empire State Building", "Central Park"]
-//   },
-//   {
-//     id: 2,
-//     destination: "Paris",
-//     startDate: "June 10",
-//     endDate: "June 25",
-//     places: ["Eiffel Tower", "Louvre", "Versailles"]
-//   }
-// ];
+const initialTrip = [
+  {
+    id: "",
+    destination: "",
+    startDate: "",
+    endDate: "",
+    places: []
+  }
+];
 
 const TripList = () => {
+  const [tripToEdit, setTripToEdit] = useState(initialTrip);
   const [trip, setTrip] = useState([]);
+  const [editing, setEditing] = useState(false);
 
-  const getTrips = id => {
+  const editTrip = () => {
+    setEditing(true);
+  };
+
+  const saveEdit = e => {
+    e.preventDefault();
     axios
-      .get(`https://build-week-vacationplanner.herokuapp.com/vacation/${id}`)
+      .put(
+        `https://build-week-vacationplanner.herokuapp.com/vacation/{vacationid}`,
+        tripToEdit
+      )
       .then(res => {
-        console.log(res);
+        console.log("axios data", res);
+        const updatedTrip = trip.map(trip =>
+          trip.id === tripToEdit.id ? res.data : trip
+        );
+        setTrip(updatedTrip);
+        setEditing(false);
+      })
+      .catch(err => console.log(err.response));
+  };
+
+  const getTrip = id => {
+    axios
+      .get(
+        `https://build-week-vacationplanner.herokuapp.com/vacation/{vacationid}`
+      )
+      .then(res => {
+        console.log(res.data);
         setTrip(res.data);
       })
       .catch(err => console.log(err.response));
   };
 
   useEffect(() => {
-    getTrips();
+    getTrip();
   }, []);
 
   return (
@@ -45,13 +64,15 @@ const TripList = () => {
       <h2>Existing Trips:</h2>
       {trip.map(trip => {
         return (
-          <div className="trip-preview">
-            <h2>{trip.destination}</h2>
-            <p>
-              {trip.startDate} to {trip.endDate}
-            </p>
-            <span>"Arrow Icon"</span>
-          </div>
+          <Link to={`/trip/${trip.vacationid}`} key={trip.vacationid}>
+            <div className="trip-preview">
+              <h2>{trip.vacationlocation}</h2>
+              <p>
+                {trip.startdate} to {trip.enddate}
+              </p>
+              <span>"Arrow Icon"</span>
+            </div>
+          </Link>
         );
       })}
       <Trip trip={trip} />
