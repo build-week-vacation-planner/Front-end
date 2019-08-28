@@ -24,7 +24,7 @@ const TripList = () => {
     setEditing(true);
   };
 
-  const saveEdit = e => {
+  const saveEdit = (e, trip) => {
     e.preventDefault();
     axios
       .put(
@@ -38,6 +38,19 @@ const TripList = () => {
         );
         setTrip(updatedTrip);
         setEditing(false);
+      })
+      .catch(err => console.log(err.response));
+  };
+
+  const deleteTrip = trip => {
+    axiosWithAuth()
+      .delete(
+        `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`
+      )
+      .then(res => {
+        console.log(res.data);
+        const updatedTrip = trip.filter(trip => trip.id !== trip.id);
+        setTrip(updatedTrip);
       })
       .catch(err => console.log(err.response));
   };
