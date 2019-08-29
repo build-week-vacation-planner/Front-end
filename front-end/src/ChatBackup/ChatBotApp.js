@@ -75,7 +75,7 @@ clearCompleted = () => {
   render() {
     return (
       <div class = 'app'>
-        <h2>Name of Chat Room Here</h2>
+        {/* <h2>Name of Chat Room Here</h2> */}
         <br/>
         <MessageList
           clearCompleted = {this.clearCompleted}
