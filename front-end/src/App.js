@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 import TripList from "./components/TripList";
 import { Route } from "react-router-dom";
 import TripForm from "./components/TripForm";
@@ -12,6 +11,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Menu from "./components/Menu";
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 import FormikSignupForm from "./components/SignupForm";
+import GlobalStyle from "./styling/Global";
+import styled from "styled-components";
 
 import ChatIndex from "./ChatApp/ChatIndex";
 import ChatApp from "./ChatApp/ChatIndex";
@@ -30,6 +31,7 @@ function App() {
       <PrivateRoute path="/trip-info" component={TripInfo} />
       <PrivateRoute path="/trip-messages" component={ChatApp} />
       <PrivateRoute path="/menu" component={Menu} />
+      <GlobalStyle />
     </div>
   );
 }
