@@ -13,6 +13,7 @@ import { axiosWithAuth } from "./utils/axiosWithAuth";
 import FormikSignupForm from "./components/SignupForm";
 import GlobalStyle from "./styling/Global";
 import styled from "styled-components";
+import TripFormUpdate from "./components/TripFormUpdate";
 
 import ChatIndex from "./ChatApp/ChatIndex";
 import ChatApp from "./ChatApp/ChatIndex";
@@ -28,6 +29,7 @@ function App() {
       <Route path="/signup" render={props => <FormikSignupForm {...props} />} />
       <PrivateRoute path="/trip-list" component={TripList} />
       <PrivateRoute path="/trip-form" component={TripForm} />
+      <PrivateRoute path="/trip-form-update/:id" component={TripFormUpdate} />
       <PrivateRoute path="/trip-info" component={TripInfo} />
       <PrivateRoute path="/trip-messages" component={ChatApp} />
       <PrivateRoute path="/menu" component={Menu} />

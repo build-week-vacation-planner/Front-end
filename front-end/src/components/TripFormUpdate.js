@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Header from "./Header";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const TripForm = props => {
+const TripFormUpdate = props => {
   const [newVacation, setNewVacation] = useState({
     vacationlocation: "",
     thingstodo: "",
@@ -12,47 +12,54 @@ const TripForm = props => {
     enddate: ""
   });
 
-  const [userid, setUserId] = useState("");
+  const [userid, setUserId] = useState();
 
-  const getUser = () => {
+  const id = props.match.params.id;
+
+  const update = id => {
     axiosWithAuth()
-      .get(
-        `https://build-week-vacationplanner.herokuapp.com/users/getcurrentuser`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
-        }
-      )
-      .then(res => {
-        console.log(res.data.userid);
-        setUserId(res.data.userid);
-      })
-      .catch(err => console.log(err.response));
-  };
-
-  getUser();
-
-  const add = e => {
-    e.preventDefault();
-
-    axiosWithAuth()
-      .post(
-        `https://build-week-vacationplanner.herokuapp.com/${userid}/vacation`,
+      .put(
+        `https://build-week-vacationplanner.herokuapp.com/vacation/${id}/`,
         newVacation
       )
       .then(res => {
-        console.log("added vacation", res);
-        setNewVacation(res.data);
+        console.log(res);
         props.history.push("/trip-list");
       })
-      .catch(err => console.log(err.response));
+      .catch(err => {
+        console.error(err.response);
+      });
+  };
+
+  const getData = id => {
+    axiosWithAuth()
+      .get(
+        `https://build-week-vacationplanner.herokuapp.com/vacation/${id}/`,
+        newVacation
+      )
+      .then(res => {
+        console.log(res);
+        setNewVacation({
+          vacationlocation: res.data.vacationlocation,
+          thingstodo: res.data.thingstodo,
+          startdate: res.data.startdate,
+          enddate: res.data.enddate
+        });
+      })
+      .catch(err => {
+        console.error(err.response);
+      });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    add();
+    update(id);
   };
+
+  useEffect(() => {
+    console.log("getting data");
+    getData(id);
+  }, [id]);
 
   const handleChange = e => {
     return setNewVacation({
@@ -66,8 +73,8 @@ const TripForm = props => {
       <Header />
       <StyledPack>
         <StyledDiv>
-          <StyledHeader>New trip</StyledHeader>
-          <form onSubmit={add}>
+          <StyledHeader>Update trip</StyledHeader>
+          <form onSubmit={handleSubmit}>
             <StyledGroup>
               <StyledLabel>Destination</StyledLabel>
               <StyledInput
@@ -75,6 +82,7 @@ const TripForm = props => {
                 name="vacationlocation"
                 placeholder="Enter your destination"
                 onChange={handleChange}
+                value={newVacation.vacationlocation}
               />
             </StyledGroup>
 
@@ -85,6 +93,7 @@ const TripForm = props => {
                 name="startdate"
                 placeholder="Start Date"
                 onChange={handleChange}
+                value={newVacation.startdate}
               />
             </StyledGroup>
 
@@ -95,6 +104,7 @@ const TripForm = props => {
                 name="enddate"
                 placeholder="End Date"
                 onChange={handleChange}
+                value={newVacation.enddate}
               />
             </StyledGroup>
 
@@ -105,13 +115,14 @@ const TripForm = props => {
                 name="thingstodo"
                 placeholder="Enter place to see"
                 onChange={handleChange}
+                value={newVacation.thingstodo}
               />
               <StyledAdd>
                 <a>+ Add another place</a>
               </StyledAdd>
             </StyledGroup>
 
-            <StyledButton>Add Trip</StyledButton>
+            <StyledButton>Update Trip</StyledButton>
           </form>
         </StyledDiv>
       </StyledPack>
@@ -236,4 +247,4 @@ const StyledPack = styled.div`
   justify-content: center;
 `;
 
-export default TripForm;
+export default TripFormUpdate;
