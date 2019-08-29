@@ -6,6 +6,7 @@ import MessageList from './MessageList';
 
 const todosData = [
   {
+    senderId: '',
     task: '',
     id: Date.now(),
     completed: false
@@ -13,7 +14,7 @@ const todosData = [
 
 ];
 
-class App extends React.Component {
+class ChatBotApp extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +25,7 @@ class App extends React.Component {
 
   toggleItem = id => {
   console.log('working', id);
-
+//What is the item
    this.setState({
       todos: this.state.todos.map(item => {
        if (item.id === id) {
@@ -40,8 +41,9 @@ class App extends React.Component {
   };
 
 
-addTodo = todoName => {
+addTodo = (todoName, userName )=> {
   const newTodo = {
+    senderId: userName,
     task: todoName,
     id: Date.now(),
     completed: false,
@@ -50,6 +52,18 @@ addTodo = todoName => {
     todos: [...this.state.todos, newTodo]
   });
 }
+
+// addSenderId = userName => {
+//   const newUser = {
+//     senderId: userName,
+//   }
+
+//   this.setState({
+//     todos: [...this.setState.todos, newUser]
+//   })
+// }
+
+
 
 clearCompleted = () => {
   this.setState({
@@ -72,4 +86,4 @@ clearCompleted = () => {
   }
 }
 
-export default App;
+export default ChatBotApp;

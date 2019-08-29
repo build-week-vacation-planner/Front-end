@@ -15,9 +15,10 @@ class ChatApp extends React.Component {
             {
                 messages: [],
                 texts: [],
+                currentUser: [],
             }
 
-       // this.sendSimpleMessage = this.sendSimpleMessage.bind(this)
+      // this.addMessage = this.addMessage.bind(this)
     }
 
 
@@ -33,8 +34,8 @@ class ChatApp extends React.Component {
         chatManager.connect()
             .then(currentUser => {
                 console.log('Successful Connection', currentUser)
-                this.currentUser = currentUser
-                this.currentUser.subscribeToRoomMultipart({
+                this.setState({currentUser : currentUser})
+                this.state.currentUser.subscribeToRoomMultipart({
                     roomId: currentUser.rooms[0].id,
                     hooks: {
                         onMessage: message => {
@@ -47,15 +48,15 @@ class ChatApp extends React.Component {
                     }
                 })
 
-                    // sendSimpleMessage(text){
+                    // anything(input){
                     //     this.currentUser.sendSimpleMessage({
-                    //         text,
+                    //         text: input,
                     //         roomId: currentUser.rooms[0].id
                     //     })
                     // }
 
-                    currentUser.sendSimpleMessage({
-                        text: 'Lets take a vote.',
+                    this.state.currentUser.sendSimpleMessage({
+                        text: "message",
                         roomId: currentUser.rooms[0].id
                     })
                     
@@ -67,21 +68,22 @@ class ChatApp extends React.Component {
             })
     }
 
-    // sendSimpleMessage(text) {
-    //     this.currentUser.sendSimpleMessage({
-    //         text,
-    //         roomId: this.currentUser.rooms[0].id,
+    // addMessage(input) {
+    //     console.log('input',input)
+    //     this.state.currentUser.sendSimpleMessage({
+    //         text : message,
+    //         roomId: this.state.currentUser.rooms[0].id,
     //     })
     // }
 
 
     render() {
-        console.log('Messages', this.state.messages)
+        //console.log('Messages', this.state.messages)
         return (
             <div className="chatapp-app" >
                 {/* <RoomList/> */}
                 < MessageList messages={this.state.messages} messagetext={this.state.texts} text = {this.text} />
-                <MessageForm sendSimpleMessage={this.sendSimpleMessage} />
+                <MessageForm addMessage={this.addMessage} />
                 {/* <RoomForm/> */}
             </div>
         )

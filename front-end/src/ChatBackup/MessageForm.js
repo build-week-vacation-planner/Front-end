@@ -4,7 +4,7 @@ class MessageForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            //userId: "",
+            //senderId: "",
             item: "",
             
         };
@@ -13,7 +13,7 @@ class MessageForm extends React.Component {
     newSubmit = element => {
         element.preventDefault();
         this.props.addTodo(this.state.item)
-        //this.props.addTodo(this.state.userId)
+        //this.props.addSenderId(this.state.senderId)
     }
 
     handleChange = element => {
@@ -24,22 +24,16 @@ class MessageForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.newSubmit}>
-                {/* <input 
-                    placeholder = 'Name'
-                    type = 'text'
-                    value = {this.state.userId}
-                    name = 'username'
-                    onChange = {this.handleChange}
-                /> */}
+            <form onSubmit={this.newSubmit} onChange = {this.handleChange}>
 
                 <input
                     placeholder='Enter Message Here'
                     type='text'
                     value={this.state.item}
                     name='item'
-                    onChange={this.handleChange}
+                    // onChange={this.handleChange}
                 />
+                
                 <button>Send</button>
             </form>
         );

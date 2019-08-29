@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message';
+import ReactDOM from 'react-dom'
 
 const data = [
     {
@@ -48,7 +49,7 @@ class MessageList extends React.Component {
                 {this.props.messages.map((message, index) => {
                     const linkedContent = this.props.messagetext[index]
                     return (
-                        <Message key={message.hi} username={message.senderId} text={linkedContent} />
+                        <Message key={message.id} username={message.senderId} text={linkedContent} />
                     )
                 })}
 
