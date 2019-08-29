@@ -78,6 +78,7 @@ const TripList = props => {
   // need to render props to pass addTrip down to TripForm
 
   const deleteTrip = trip => {
+    // trip.preventDefault()
     axiosWithAuth()
       .delete(
         `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`,
@@ -142,8 +143,15 @@ const TripList = props => {
       <Link to="/trip-form">
         <button>Create a New Trip</button>
       </Link>
+      <div>
+      <button >Delete Trip</button>
+      </div>
     </div>
   );
+
+
+
 };
 
 export default TripList;
+
