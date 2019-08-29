@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Header from './Header';
+import Header from "./Header";
 
 const TripForm = () => {
   return (
@@ -75,29 +76,29 @@ const StyledInput = styled.input`
 `;
 
 const StyledDates = styled.input`
-    width: 295px;
-    height: 48px;
-    border-radius: 3px;
-    border: 1px solid #EBEBEB;
-    box-sizing: border-box;
-    font-size: 16px;
-    line-height: 21px;
-    padding-left: 12px;
-    margin-bottom: 19px;
-    font-family: 'Cereal';
+  width: 295px;
+  height: 48px;
+  border-radius: 3px;
+  border: 1px solid #ebebeb;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 21px;
+  padding-left: 12px;
+  margin-bottom: 19px;
+  font-family: "Cereal";
+  color: #767676;
+
+  :focus {
+    border: 2px solid #008489;
+    outline: none;
+    padding-left: 11px;
+  }
+
+  ::placeholder {
     color: #767676;
-
-    :focus {
-      border: 2px solid #008489;
-      outline: none;
-      padding-left: 11px;
-    }
-
-    ::placeholder {
-      color: #767676;
-      font-family: 'Cereal';
-    }
-`
+    font-family: "Cereal";
+  }
+`;
 
 const StyledDate = styled.div`
   display: flex;
@@ -122,7 +123,7 @@ const StyledLabel = styled.label`
   margin-bottom: 8px;
   text-transform: uppercase;
   font-weight: 700;
-`
+`;
 
 const StyledButton = styled.button`
   background-color: #fe5b5e;
@@ -142,7 +143,7 @@ const StyledButton = styled.button`
     transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
     cursor: pointer;
   }
-`
+`;
 
 const StyledAdd = styled.div`
   display: flex;
@@ -153,7 +154,7 @@ const StyledAdd = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: -5px;
-`
+`;
 
 const StyledHeader = styled.h1`
   font-size: 24px 
@@ -161,13 +162,11 @@ const StyledHeader = styled.h1`
   line-height: 30px; 
   margin-bottom: 30px;
   font-weight: 900;
-`
+`;
 
 const StyledPack = styled.div`
   display: flex;
   justify-content: center;
-
-`
-
+`;
 
 export default TripForm;

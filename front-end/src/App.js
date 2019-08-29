@@ -11,35 +11,25 @@ import PrivateRoute from "./components/PrivateRoute";
 import Menu from "./components/Menu";
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 import FormikSignupForm from "./components/SignupForm";
-import GlobalStyle from "./styling/Global"
-import styled from 'styled-components'
+import GlobalStyle from "./styling/Global";
+import styled from "styled-components";
 
- import ChatIndex from './ChatApp/ChatIndex';
- import ChatApp from './ChatApp/ChatIndex'
- //import TestChatIndex from './ChatApp/MessageFolder/TestChatIndex'
-
- import ChatIndex from './ChatApp/ChatIndex';
- import ChatApp from './ChatApp/ChatIndex'
- //import TestChatIndex from './ChatApp/MessageFolder/TestChatIndex'
-
-
+import ChatIndex from "./ChatApp/ChatIndex";
+import ChatApp from "./ChatApp/ChatIndex";
+//import TestChatIndex from './ChatApp/MessageFolder/TestChatIndex'
 
 function App() {
   return (
     <div className="App">
-
-     {/*  <ChatIndex/> */}
-
-      <ChatIndex/>
-
-      {/* <TestChatIndex/> */}
+      {/* <ChatIndex /> */}
+      {/* <TestChatIndex /> */}
       <Route exact path="/" render={props => <Welcome {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/signup" render={props => <FormikSignupForm {...props} />} />
-      <PrivateRoute exact path="/trip-list" component={TripList} />
-      <PrivateRoute exact path="/trip-form" component={TripForm} />
-      <PrivateRoute exact path="/trip-info" component={TripInfo} />
-      <PrivateRoute exact path="/trip-messages" component={ChatApp} />
+      <PrivateRoute path="/trip-list" component={TripList} />
+      <PrivateRoute path="/trip-form" component={TripForm} />
+      <PrivateRoute path="/trip-info" component={TripInfo} />
+      <PrivateRoute path="/trip-messages" component={ChatApp} />
       <PrivateRoute path="/menu" component={Menu} />
       <GlobalStyle />
     </div>
