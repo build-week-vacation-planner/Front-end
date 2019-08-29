@@ -4,11 +4,10 @@ import styled from "styled-components";
 const TripInfo = props => {
   return (
     <div>
-      <h3>Your Trip:</h3>
-      <h2>{props.trip.vacation.vacationlocation}</h2>
-      <p>{props.trip.vacation.startDate}</p>
-      <p>{props.trip.vacation.endDate}</p>
-      <p>{props.trip.vacation.places}</p>
+      <h2>{props.destination}</h2>
+      <p>{props.startDate}</p>
+      <p>{props.endDate}</p>
+      <p>{props.places}</p>
     </div>
   );
 };

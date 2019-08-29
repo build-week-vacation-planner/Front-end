@@ -14,8 +14,8 @@ const Login = ({ errors, touched, handleSubmit, status }) => {
           <Form>
 
           <StyledGroup>
-            <StyledLabel htmlFor="email">Email</StyledLabel>
-              <StyledField type="text" name="email" placeholder="Email" />
+            <StyledLabel htmlFor="email">Username</StyledLabel>
+              <StyledField type="text" name="username" placeholder="Username" />
           </StyledGroup>
 
           <StyledGroup>
