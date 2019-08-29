@@ -1,9 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TripForm = props => {
   return (
     <div>
-      <h3>New Trip</h3>
+      <h3>My Trip</h3>
+      <Link to="/trip-list">
+        <button>Back</button>
+      </Link>
       <form>
         <input type="text" name="destination" placeholder="Enter destination" />
         <input type="text" name="startdate" placeholder="Enter start date" />
