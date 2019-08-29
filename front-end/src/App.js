@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 import TripList from "./components/TripList";
 import { Route } from "react-router-dom";
 import TripForm from "./components/TripForm";
@@ -13,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Menu from "./components/Menu";
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 import FormikSignupForm from "./components/SignupForm";
+import GlobalStyle from "./styling/Global"
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
         render={props => <FormikSignupForm {...props} />}
       />
       <PrivateRoute path="/menu" component={Menu} />
+      <GlobalStyle />
     </div>
   );
 }
