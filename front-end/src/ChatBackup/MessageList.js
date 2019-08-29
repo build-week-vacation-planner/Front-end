@@ -26,14 +26,14 @@ const MessageList = props => {
             {data.map((message, index) => {
                     return (
                         <>
-                        <div>{message.senderId}</div>
+                        {/* <div>{message.senderId}</div> */}
                         <div>{message.text}</div>
                         <br/>
                         </>
                     )
                 })}
-            {props.todos.map(item => (
-                <Message key={item.id} item={item} toggleItem={props.toggleItem} />
+            {props.todos.map((item, senderId) => (
+                <Message key={item.id} item={item} toggleItem={props.toggleItem} senderId = {senderId} />
             ))}
             <button className="clear-btn" onClick={props.clearCompleted}>
              Clear Message History
