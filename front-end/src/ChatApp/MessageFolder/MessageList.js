@@ -32,12 +32,12 @@ class MessageList extends React.Component {
 
                     )
                 })}
-                {this.props.messages.map((message, index) => {
+                {/* {this.props.messages.map((message, index) => {
                     return (
                         <Message key={message.id} username={
                             message.senderId} text={message.text} />
                     )
-                })}
+                })} */}
 {/* 
                 {this.props.messagetext.map((message, index) => {
                     return (
@@ -45,12 +45,12 @@ class MessageList extends React.Component {
                     )
                 })} */}
 
-                {/* {this.props.messages.map((message, index) => {
+                {this.props.messages.map((message, index) => {
                     const linkedContent = this.props.messagetext[index]
                     return (
                         <Message key={message.hi} username={message.senderId} text={linkedContent} />
                     )
-                })} */}
+                })}
 
             </div>
 

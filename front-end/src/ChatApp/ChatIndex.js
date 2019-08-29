@@ -8,7 +8,7 @@ import MessageForm from './MessageFolder/MessageForm';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import { tokenUrl, instanceLocator, userId } from './config';
 
-class ChatApp extends React.Component {
+class App extends React.Component {
     constructor() {
         super()
         this.state =
@@ -17,12 +17,11 @@ class ChatApp extends React.Component {
                 texts: [],
             }
 
-        this.addMessage = this.addMessage.bind(this)
+        //this.sendSimpleMessage = this.sendSimpleMessage.bind(this)
     }
 
 
     componentDidMount() {
-
         const chatManager = new ChatManager({
             instanceLocator: instanceLocator,
             userId: userId,
@@ -30,7 +29,6 @@ class ChatApp extends React.Component {
                 url: tokenUrl
             })
         })
-
 
         chatManager.connect()
             .then(currentUser => {
@@ -48,32 +46,48 @@ class ChatApp extends React.Component {
                         }
                     }
                 })
-            })
 
-            .catch(error => {
-                console.log('Error with Connection', error)
-            })
-            
-    }
-    addMessage(text) {
-        this.state.currentUser.sendSimpleMessage({
-            text,
-            roomId: this.currentUser.rooms[0].id,
-        })
-        .catch(error => console.error('error', error));
-    }
+
+                // currentUser.sendSimpleMessage({
+                //     text: 'Lets take a vote.',
+                //     roomId: currentUser.rooms[0].id
+                // })
+
+                currentUser.sendSimpleMessage({
+                    text: 'Hello',
+                    roomId: this.currentUser.rooms[0].id,
+
+                })
+
+                    .catch(error => {
+                        console.log('Error with Connection', error)
+                    });
+
+            }
+
+
+            )}
+
+    // sendSimpleMessage(text) {
+    //     console.log('this text', text)
+    //     this.currentUser.sendSimpleMessage({
+    //         text,
+    //         roomId: this.currentUser.rooms[0].id,
+    //     })
+    // }
+
 
     render() {
-        console.log('Messages', this.state.messages)
-        return (
-            <div className="chatapp-app" >
-
-                < MessageList messages={this.state.messages} messagetext={this.state.texts} />
-                <MessageForm onSubmit={this.addMessage} />
-
+                    console.log('Messages', this.state.messages)
+        return(
+            <div className = "chatapp-app" >
+                            {/* <RoomList/> */ }
+                            < MessageList messages = { this.state.messages } messagetext = { this.state.texts } />
+                                <MessageForm sendSimpleMessage={this.sendSimpleMessage} />
+                {/* <RoomForm/> */ }
             </div>
         )
-    };
+    }
 }
 
-export default ChatApp;
+export default App;

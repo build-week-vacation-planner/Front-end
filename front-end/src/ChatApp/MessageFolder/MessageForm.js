@@ -23,7 +23,7 @@ class MessageForm extends React.Component{
     handleSubmit(ef){
         ef.preventDefault()
         console.log('Handle Submit', ef)
-        this.props.onSubmit(this.state.message)
+        this.props.sendSimpleMessage(this.state.message)
         this.setState({
             message: '',
         })
