@@ -9,7 +9,7 @@ const Welcome = () => {
       <StyledHeader>Welcome on Vacation Planner!</StyledHeader>
       <StyledP >Please login or sign up below</StyledP>
       <Link to="/signup">
-        <StyledButton>Sign Up</StyledButton>
+        <StyledButton>Sign up</StyledButton>
       </Link>
       <Link to="/login">
         <StyledButton primary>Login</StyledButton>

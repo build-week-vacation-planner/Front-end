@@ -125,7 +125,7 @@ const TripList = props => {
       <StyledDiv>
         <StyledWrap>
           <StyledWrapper>
-            <StyledHeader>Existing Trips:</StyledHeader>
+            <StyledHeader>My trips</StyledHeader>
             <Link to="/trip-form">
               <StyledButton>Create a New Trip</StyledButton>
             </Link>

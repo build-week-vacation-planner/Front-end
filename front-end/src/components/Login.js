@@ -25,7 +25,10 @@ const Login = ({ errors, touched, handleSubmit, status }) => {
             
             <StyledButton type="submit">Sign in</StyledButton>
             <StyledP>Don't have an account? 
-            <StyledA href="#">Sign Up</StyledA>
+            <Link to="/signup">
+            <StyledA>Sign up</StyledA>
+          </Link>
+            
             </StyledP>
             <div>
               {touched.username && errors.username && (
