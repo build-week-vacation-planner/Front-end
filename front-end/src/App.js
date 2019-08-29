@@ -18,10 +18,20 @@ import styled from 'styled-components'
  import ChatApp from './ChatApp/ChatIndex'
  //import TestChatIndex from './ChatApp/MessageFolder/TestChatIndex'
 
+ import ChatIndex from './ChatApp/ChatIndex';
+ import ChatApp from './ChatApp/ChatIndex'
+ //import TestChatIndex from './ChatApp/MessageFolder/TestChatIndex'
+
+
+
 function App() {
   return (
     <div className="App">
+
      {/*  <ChatIndex/> */}
+
+      <ChatIndex/>
+
       {/* <TestChatIndex/> */}
       <Route exact path="/" render={props => <Welcome {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
