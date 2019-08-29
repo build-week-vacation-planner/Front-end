@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageForm from './MessageForm';
 import MessageList from './MessageList';
+import { Link } from "react-router-dom";
 
 // import "./components/TodoComponents/Todo.css"
 
@@ -82,6 +83,7 @@ clearCompleted = () => {
           toggleItem = {this.toggleItem}
         />
         <MessageForm addTodo = {this.addTodo}/>
+        <Link to  = '/trip-list'><button >Back to Trip List</button></Link>
       </div>
     );
   }
