@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="16px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Path@2x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="app-copy" transform="translate(-998.000000, -228.000000)" fill="#008489" fill-rule="nonzero">
+            <g id="Group-3" transform="translate(420.000000, 113.000000)">
+                <g id="Group-2-Copy-5" transform="translate(16.000000, 111.000000)">
+                    <g id="arrow-point-to-right" transform="translate(561.631579, 4.500000)">
+                        <path d="M8.87449189,8.24257713 L2.21882397,14.6921386 C1.79544309,15.1026205 1.10900358,15.1026205 0.685828245,14.6921386 C0.262618655,14.2820219 0.262618655,13.6168521 0.685828245,13.2067686 L6.57506682,7.49989211 L0.685999529,1.79321485 C0.26278994,1.38293217 0.26278994,0.717828712 0.685999529,0.307712013 C1.10920912,-0.102570671 1.79561438,-0.102570671 2.21899525,0.307712013 L8.87466317,6.75737307 C9.08626797,6.96253101 9.19195046,7.23112857 9.19195046,7.49985891 C9.19195046,7.76872205 9.08606242,8.03751878 8.87449189,8.24257713 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
