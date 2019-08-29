@@ -22,7 +22,7 @@ import ChatBotApp from './ChatBackup/ChatBotApp'
 function App() {
   return (
     <div className="App">
-      {/* <ChatIndex /> */}
+      <ChatIndex />
       {/* <ChatBotApp/> */}
 
       <Route exact path="/" render={props => <Welcome {...props} />} />
