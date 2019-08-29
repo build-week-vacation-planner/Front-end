@@ -15,7 +15,9 @@ class MessageForm extends React.Component{
 
     handleChange(e) {
         this.setState({
-            message: e.target.value
+            message: e.target.value,
+            
+            
         })
 
     }
@@ -43,8 +45,8 @@ class MessageForm extends React.Component{
                     value = {this.state.message}
                     onChange = {this.handleChange}
                     placeholder = 'Enter Message Here'
-                    type = 'text'
-                    id = {this.input}
+                    type = 'input'
+                    // id = {this.input}
                     />
                 <button type = 'submit'>Submit</button>
             </form>

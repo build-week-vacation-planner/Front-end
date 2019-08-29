@@ -8,7 +8,7 @@ import MessageForm from './MessageFolder/MessageForm';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import { tokenUrl, instanceLocator, userId } from './config';
 
-class App extends React.Component {
+class ChatApp extends React.Component {
     constructor() {
         super()
         this.state =
@@ -17,7 +17,7 @@ class App extends React.Component {
                 texts: [],
             }
 
-        //this.sendSimpleMessage = this.sendSimpleMessage.bind(this)
+       // this.sendSimpleMessage = this.sendSimpleMessage.bind(this)
     }
 
 
@@ -47,29 +47,27 @@ class App extends React.Component {
                     }
                 })
 
+                    // sendSimpleMessage(text){
+                    //     this.currentUser.sendSimpleMessage({
+                    //         text,
+                    //         roomId: currentUser.rooms[0].id
+                    //     })
+                    // }
 
-                // currentUser.sendSimpleMessage({
-                //     text: 'Lets take a vote.',
-                //     roomId: currentUser.rooms[0].id
-                // })
-
-                currentUser.sendSimpleMessage({
-                    text: 'Hello',
-                    roomId: this.currentUser.rooms[0].id,
-
-                })
+                    currentUser.sendSimpleMessage({
+                        text: 'Lets take a vote.',
+                        roomId: currentUser.rooms[0].id
+                    })
+                    
 
                     .catch(error => {
                         console.log('Error with Connection', error)
                     });
 
-            }
-
-
-            )}
+            })
+    }
 
     // sendSimpleMessage(text) {
-    //     console.log('this text', text)
     //     this.currentUser.sendSimpleMessage({
     //         text,
     //         roomId: this.currentUser.rooms[0].id,
@@ -78,16 +76,16 @@ class App extends React.Component {
 
 
     render() {
-                    console.log('Messages', this.state.messages)
-        return(
-            <div className = "chatapp-app" >
-                            {/* <RoomList/> */ }
-                            < MessageList messages = { this.state.messages } messagetext = { this.state.texts } />
-                                <MessageForm sendSimpleMessage={this.sendSimpleMessage} />
-                {/* <RoomForm/> */ }
+        console.log('Messages', this.state.messages)
+        return (
+            <div className="chatapp-app" >
+                {/* <RoomList/> */}
+                < MessageList messages={this.state.messages} messagetext={this.state.texts} text = {this.text} />
+                <MessageForm sendSimpleMessage={this.sendSimpleMessage} />
+                {/* <RoomForm/> */}
             </div>
         )
     }
 }
 
-export default App;
+export default ChatApp;

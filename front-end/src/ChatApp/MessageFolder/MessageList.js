@@ -22,7 +22,7 @@ const data = [
 class MessageList extends React.Component {
 
     render() {
-        console.log('message-text', this.props.messagetext)
+        //console.log('message-text', )
         return (
             <div className='message-list'>
 
@@ -35,7 +35,7 @@ class MessageList extends React.Component {
                 {/* {this.props.messages.map((message, index) => {
                     return (
                         <Message key={message.id} username={
-                            message.senderId} text={message.text} />
+                            message.senderId} text={this.props.message} />
                     )
                 })} */}
 {/* 
