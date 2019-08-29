@@ -19,7 +19,7 @@ const initialTrip = [
 ];
 
 const TripList = props => {
-  console.log("tripList props", props);
+  // console.log("tripList props", props);
   const [user, setUser] = useState({});
   const [trip, setTrip] = useState([]);
   const [tripToEdit, setTripToEdit] = useState(initialTrip);
@@ -59,43 +59,24 @@ const TripList = props => {
       .catch(err => console.log(err.response));
   };
 
-  const addTrip = event => {
-    event.preventDefault();
-    axiosWithAuth()
-      .post(
-        `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation`,
-        newTrip,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
-        }
-      )
-      .then(res => {
-        console.log("axios post data", res);
-        setNewTrip(res.data);
-      })
-      .catch(err => console.log(err.response));
-  };
-  // need to render props to pass addTrip down to TripForm
-
-  const deleteTrip = trip => {
-    axiosWithAuth()
-      .delete(
-        `https://build-week-vacationplanner.herokuapp.com/vacation/delete/{vacationid}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
-        }
-      )
-      .then(res => {
-        console.log(res.data);
-        const updatedTrip = trip.filter(trip => trip.id !== trip.id);
-        setTrip(updatedTrip);
-      })
-      .catch(err => console.log(err.response));
-  };
+  // const addTrip = event => {
+  //   event.preventDefault();
+  //   axiosWithAuth()
+  //     .post(
+  //       `https://build-week-vacationplanner.herokuapp.com/{userid}/vacation`,
+  //       newTrip,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`
+  //         }
+  //       }
+  //     )
+  //     .then(res => {
+  //       console.log("axios post data", res);
+  //       setNewTrip(res.data);
+  //     })
+  //     .catch(err => console.log(err.response));
+  // };
 
   const getTrip = () => {
     axiosWithAuth()
@@ -108,7 +89,7 @@ const TripList = props => {
         }
       )
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setUser(res.data);
         setTrip(res.data.vacationParticipants);
       })
@@ -130,23 +111,19 @@ const TripList = props => {
               <StyledButton>Create a New Trip</StyledButton>
             </Link>
           </StyledWrapper>
-        {trip.map(trip => {
-          return (
-            <Link
-              to={`/trip/${trip.vacation.vacationid}`}
-              key={trip.vacation.vacationid}
-            >
+          {trip.map(trip => {
+            return (
               <div className="trip-preview">
-                <h2>{trip.vacation.vacationlocation}</h2>
-                <p>
-                  {trip.vacation.startdate} to {trip.vacation.enddate}
-                </p>
-                <Trip {...props} trip={trip} deleteTrip={deleteTrip} />
+                <Trip
+                  {...props}
+                  trip={trip}
+                  setTrip={setTrip}
+                  getTrip={getTrip}
+                />
                 <span>"Arrow Icon"</span>
               </div>
-            </Link>
-          );
-        })}
+            );
+          })}
         </StyledWrap>
       </StyledDiv>
     </div>
@@ -167,31 +144,30 @@ const StyledButton = styled.button`
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
   }
-`
+`;
 
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-
-`
+`;
 
 const StyledWrap = styled.div`
   display: inline-block;
   width: 600px;
-`
+`;
 
 const StyledWrapper = styled.div`
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const StyledHeader = styled.div`
   font-size: 24px;
   line-height: 30px;
-  margin-bottom: 0px; 
+  margin-bottom: 0px;
   color: #484848;
   font-weight: 900;
-`
+`;
 
 export default TripList;
