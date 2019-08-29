@@ -9,6 +9,7 @@ const Message = props => {
       >
 
         <p>{props.item.task}</p>
+        <br/>
       </div>
       </>
     );

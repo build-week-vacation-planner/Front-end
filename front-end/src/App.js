@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       {/* <ChatIndex /> */}
-      {/* <ChatBotApp/> */}
+      <ChatBotApp/>
 
       <Route exact path="/" render={props => <Welcome {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />

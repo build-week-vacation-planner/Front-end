@@ -26,7 +26,7 @@ const MessageList = props => {
             {data.map((message, index) => {
                     return (
                         <>
-                        <div>{message.senderId}</div>
+                        {/* <div>{message.senderId}</div> */}
                         <div>{message.text}</div>
                         <br/>
                         </>
