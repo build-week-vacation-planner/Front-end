@@ -113,15 +113,7 @@ const TripList = props => {
           </StyledWrapper>
           {trip.map(trip => {
             return (
-              // <Link
-              //   to={`/trip/${trip.vacation.vacationid}`}
-              //   key={trip.vacation.vacationid}
-              // >
               <div className="trip-preview">
-                <h2>{trip.vacation.vacationlocation}</h2>
-                <p>
-                  {trip.vacation.startdate} to {trip.vacation.enddate}
-                </p>
                 <Trip
                   {...props}
                   trip={trip}
@@ -130,7 +122,6 @@ const TripList = props => {
                 />
                 <span>"Arrow Icon"</span>
               </div>
-              // </Link>
             );
           })}
         </StyledWrap>

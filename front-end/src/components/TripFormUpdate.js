@@ -68,6 +68,30 @@ const TripFormUpdate = props => {
     });
   };
 
+  const [friendList, setFriendList] = useState();
+
+  const addFriend = () => {
+    axiosWithAuth()
+      .put(
+        `https://build-week-vacationplanner.herokuapp.com/user/${friendList}/vacation/${id}`
+      )
+      .then(res => {
+        console.log(res);
+        props.history.push("/trip-list");
+      })
+      .catch(err => console.log(err.response));
+  };
+
+  const handleFriendChange = e => {
+    return setFriendList(e.target.value);
+  };
+
+  const handleFriend = e => {
+    e.preventDefault();
+    addFriend();
+    setFriendList("");
+  };
+
   return (
     <div>
       <Header />
@@ -123,6 +147,20 @@ const TripFormUpdate = props => {
             </StyledGroup>
 
             <StyledButton>Update Trip</StyledButton>
+          </form>
+
+          <form onSubmit={handleFriend}>
+            <StyledGroup>
+              <StyledLabel>Add Friend</StyledLabel>
+              <StyledInput
+                type="text"
+                name="friendList"
+                placeholder="Add Friend"
+                onChange={handleFriendChange}
+                value={friendList}
+              />
+            </StyledGroup>
+            <StyledButton>Add Friend</StyledButton>
           </form>
         </StyledDiv>
       </StyledPack>

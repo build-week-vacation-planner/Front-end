@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import TripForm from "./components/TripForm";
 import Welcome from "./components/Welcome";
 import TripInfo from "./components/TripInfo";
-//import Chat from "./components/Chat";
+import Chat from "./components/Chat";
 import Login from "./components/Login";
 import SignupForm from "./components/SignupForm";
 import PrivateRoute from "./components/PrivateRoute";
@@ -33,6 +33,7 @@ function App() {
       <PrivateRoute path="/trip-info" component={TripInfo} />
       <PrivateRoute path="/trip-messages" component={ChatApp} />
       <PrivateRoute path="/menu" component={Menu} />
+      <PrivateRoute path="/trip-chat/:id" component={Chat} />
       <GlobalStyle />
     </div>
   );

@@ -4,13 +4,8 @@ import TripInfo from "./TripInfo";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-//
-
 const Trip = props => {
-  // console.log(props);
-
   const deleteTrip = () => {
-    // console.log("here", trip);
     axiosWithAuth()
       .delete(
         `https://build-week-vacationplanner.herokuapp.com/vacation/delete/${props.trip.vacation.vacationid}`,
@@ -23,8 +18,6 @@ const Trip = props => {
       .then(res => {
         console.log(res);
         props.getTrip();
-        // const updatedTrip = props.trip.filter(trip => trip.id !== trip.id);
-        // props.setTrip(updatedTrip);
       })
       .catch(err => console.log(err.response));
   };
@@ -45,6 +38,9 @@ const Trip = props => {
         <button className="edit-btn">Edit Trip</button>
       </Link>
       <button onClick={deleteTrip}>Delete Trip</button>
+      <Link to={`/trip-chat/${props.trip.vacation.vacationid}`}>
+        <button className="edit-btn">Trip Chat</button>
+      </Link>
     </div>
   );
 };
