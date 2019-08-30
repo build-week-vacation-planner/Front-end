@@ -120,7 +120,6 @@ const TripList = props => {
                   setTrip={setTrip}
                   getTrip={getTrip}
                 />
-                <span>"Arrow Icon"</span>
               </div>
             );
           })}

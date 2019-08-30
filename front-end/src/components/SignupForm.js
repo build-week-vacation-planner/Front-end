@@ -35,7 +35,7 @@ const SignupForm = ({ values, errors, touched, handleSubmit, status }) => {
         <StyledP>Already have an account? 
           
           <Link to="/login">
-          <StyledA href="#">Login Up</StyledA>
+          <StyledA href="#">Login</StyledA>
           </Link>
         </StyledP>
         <div>
