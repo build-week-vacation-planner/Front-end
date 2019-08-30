@@ -13,7 +13,7 @@ const Header = () => {
       </Link> */}
         <StyledDiv>
           <StyledWrap>
-            <Link to="/">
+            <Link to="/trip-list">
             <img src={logo} alt="logo" />
             </Link>
           </StyledWrap>

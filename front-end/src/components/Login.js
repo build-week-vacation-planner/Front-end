@@ -26,10 +26,16 @@ const Login = ({ errors, touched, handleSubmit, status }) => {
               />
             </StyledGroup>
 
+            
+         
+
+
             <StyledButton type="submit">Sign in</StyledButton>
             <StyledP>
               Don't have an account?
-              <StyledA href="#">Sign Up</StyledA>
+              <Link to="/signup">
+                <StyledA>Sign Up</StyledA>
+              </Link>
             </StyledP>
             <div>
               {touched.username && errors.username && (

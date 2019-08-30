@@ -106,9 +106,6 @@ const TripForm = props => {
                 placeholder="Enter place to see"
                 onChange={handleChange}
               />
-              <StyledAdd>
-                <a>+ Add another place</a>
-              </StyledAdd>
             </StyledGroup>
 
             <StyledButton>Add Trip</StyledButton>

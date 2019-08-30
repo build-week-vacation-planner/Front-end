@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message';
+import ReactDOM from 'react-dom'
 
 const data = [
     {
@@ -22,7 +23,7 @@ const data = [
 class MessageList extends React.Component {
 
     render() {
-        console.log('message-text', this.props.messagetext)
+        //console.log('message-text', )
         return (
             <div className='message-list'>
 
@@ -32,12 +33,12 @@ class MessageList extends React.Component {
 
                     )
                 })}
-                {this.props.messages.map((message, index) => {
+                {/* {this.props.messages.map((message, index) => {
                     return (
                         <Message key={message.id} username={
-                            message.senderId} text={message.text} />
+                            message.senderId} text={this.props.message} />
                     )
-                })}
+                })} */}
 {/* 
                 {this.props.messagetext.map((message, index) => {
                     return (
@@ -45,12 +46,12 @@ class MessageList extends React.Component {
                     )
                 })} */}
 
-                {/* {this.props.messages.map((message, index) => {
+                {this.props.messages.map((message, index) => {
                     const linkedContent = this.props.messagetext[index]
                     return (
-                        <Message key={message.hi} username={message.senderId} text={linkedContent} />
+                        <Message key={message.id} username={message.senderId} text={linkedContent} />
                     )
-                })} */}
+                })}
 
             </div>
 

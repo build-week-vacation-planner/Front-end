@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Trip from "./Trip";
 import { Link } from "react-router-dom";
 import Header from "./Header";
-import axios from "axios";
+//import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
@@ -106,7 +106,7 @@ const TripList = props => {
       <StyledDiv>
         <StyledWrap>
           <StyledWrapper>
-            <StyledHeader>Existing Trips:</StyledHeader>
+            <StyledHeader>My trips</StyledHeader>
             <Link to="/trip-form">
               <StyledButton>Create a New Trip</StyledButton>
             </Link>
@@ -120,7 +120,6 @@ const TripList = props => {
                   setTrip={setTrip}
                   getTrip={getTrip}
                 />
-                <span>"Arrow Icon"</span>
               </div>
             );
           })}
